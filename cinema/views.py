@@ -53,7 +53,7 @@ class MovieViewSet(viewsets.ModelViewSet):
         if title:
             queryset = queryset.filter(title__icontains=title)
 
-        if self.action == ("list", "retrieve"):
+        if self.action in ["list", "retrieve"]:
             queryset = Movie.objects.prefetch_related("genres", "actors")
 
         return queryset.distinct()
